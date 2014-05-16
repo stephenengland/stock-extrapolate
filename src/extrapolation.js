@@ -18,6 +18,7 @@ var extrapolation = {
 		var current = data.startAmount;
 		var currentNoInflation = data.startAmount;
 		var totalInvested = current;
+		extrapolation.currentRecurring = 0;
 		
 		for (var i=0; i<data.yearsToEvaluate; i++) {
 			if( i > 0){

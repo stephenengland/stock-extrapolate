@@ -33,7 +33,7 @@ $(document).ready(function(){
 	});
 	
 	viewModel.mostRecentRecurring = ko.computed(function() {
-		return viewModel.recurringDepositsAndWithdrawls()[viewModel.recurringDepositsAndWithdrawls.length];
+		return viewModel.recurringDepositsAndWithdrawls()[viewModel.recurringDepositsAndWithdrawls().length - 1];
 	});
 	
 	viewModel.recurringTypes = ko.observableArray([
