@@ -71,7 +71,15 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row padded">
+				<div class="form-group col-sm-4">
+					<label for="yearsToEvaluate">Number Of Years to Calculate</label>
+					<div class="input-group">
+						<input type="number" class="form-control" name="yearsToEvaluate" id="yearsToEvaluate" data-bind="value: yearsToEvaluate"></input>
+					</div>
+				</div>
+			</div>
+			<div class="row padded">
 				<div class="panel panel-default">
 					<div class="panel-heading">Add Recurring Transactions</div>
 					<div class="panel-body">
@@ -129,6 +137,7 @@
 			<thead>
 				<tr>
 					<th>Year</th>
+					<th>Portfolio Amount Without Inflation</th>
 					<th>Portfolio Amount After Inflation</th>
 					<th>Interest After Inflation</th>
 					<th>Transaction (if any)</th>
@@ -137,6 +146,7 @@
 			<tbody data-bind="foreach: results">
 				<tr>
 					<td><span data-bind="text: year"></span></td>
+					<td>$<span data-bind="numericText:currentNoInflation"></span></td>
 					<td>$<span data-bind="numericText:current"></span></td>
 					<td><span data-bind="visible: !isNaN(earnedThisYear)">$</span><span data-bind="numericText: earnedThisYear, visible: !isNaN(earnedThisYear)"></span></td>
 					<td><span data-bind="visible: !isNaN(recurring)">$</span><span data-bind="numericText: recurring, visible: !isNaN(recurring)"></span></td>

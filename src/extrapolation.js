@@ -16,6 +16,7 @@ var extrapolation = {
 	extrapolate: function (data) {
 		var results = [];
 		var current = data.startAmount;
+		var currentNoInflation = data.startAmount;
 		var totalInvested = current;
 		
 		for (var i=0; i<data.yearsToEvaluate; i++) {
@@ -23,10 +24,16 @@ var extrapolation = {
 				var earnedThisYear = current * data.annualReturn;
 				earnedThisYear = Math.round(earnedThisYear * 100) / 100;
 				current += earnedThisYear;
+				
+				var noInflationEarnedThisYear = currentNoInflation * (data.annualReturn + data.inflation);
+				noInflationEarnedThisYear = Math.round(noInflationEarnedThisYear * 100) / 100;
+				currentNoInflation += noInflationEarnedThisYear;
+				
 				var recurring = extrapolation.getRecurring(data, i);
 				if (recurring) {
 					recurring = Math.round(recurring * 100) / 100; 
-					current += recurring
+					current += recurring;
+					currentNoInflation += recurring;
 					if (recurring > 0) {
 						totalInvested += recurring;
 					}
@@ -35,6 +42,7 @@ var extrapolation = {
 			
 			results.push({
 				current: current,
+				currentNoInflation: currentNoInflation,
 				earnedThisYear: earnedThisYear,
 				recurring: recurring,
 				year: new Date(new Date().getFullYear() + i, 1, 1, 1).getFullYear()

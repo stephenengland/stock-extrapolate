@@ -17,9 +17,10 @@ $(document).ready(function(){
 
 	viewModel.results = ko.computed(function () {
 		var extrapolationModel = {
-			startAmount: viewModel.startAmount(),
-			annualReturn: viewModel.annualReturn(),
-			yearsToEvaluate: viewModel.yearsToEvaluate(),
+			startAmount: parseFloat(viewModel.startAmount()),
+			annualReturn: parseFloat(viewModel.annualReturn()),
+			yearsToEvaluate: parseInt(viewModel.yearsToEvaluate()),
+			inflation: parseFloat(viewModel.averageInflation()) / 100,
 			recurringDepositsAndWithdrawls: ko.toJS(viewModel.recurringDepositsAndWithdrawls())
 		};
 		
