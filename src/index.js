@@ -2,7 +2,7 @@ var viewModel;
 
 $(document).ready(function(){
 	viewModel = {
-		startAmount: ko.observable(1000),
+		startAmount: ko.observable("1000"),
 		returnOnInvestment: ko.observable(12),
 		averageInflation: ko.observable(3),
 		yearsToEvaluate: ko.observable(20),
@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 	viewModel.results = ko.computed(function () {
 		var extrapolationModel = {
-			startAmount: parseFloat(viewModel.startAmount()),
+			startAmount: parseFloat(viewModel.startAmount().replace(/,/g,'')),
 			annualReturn: parseFloat(viewModel.annualReturn()),
 			yearsToEvaluate: parseInt(viewModel.yearsToEvaluate()),
 			inflation: parseFloat(viewModel.averageInflation()) / 100,
@@ -47,7 +47,7 @@ $(document).ready(function(){
 	
 	viewModel.addRecurring = function () {
 		var type = viewModel.selectedRecurringType();
-		var amount = parseFloat(viewModel.selectedRecurringAmount());
+		var amount = parseFloat(viewModel.selectedRecurringAmount().replace(/,/g,''));
 		var numberOfYears = parseInt(viewModel.selectedStopAfter());
 		
 		var signedAmount = 0;
