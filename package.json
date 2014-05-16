@@ -1,0 +1,26 @@
+{
+  "name": "stock-extrapolate",
+  "version": "0.0.1",
+  "description": "An investment calculator for extrapolating stock earnings using Knockout.js",
+  "main": "www/index.html",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thealah/stock-extrapolate.git"
+  },
+  "author": "Stephen England (thealah@github)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thealah/stock-extrapolate/issues"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-replace": "~0.6.1",
+    "grunt-config": "~0.1.4",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-express": "~1.2.1",
+    "grunt-open": "~0.2.3",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}
