@@ -16,7 +16,7 @@ jobs:
           command: mkdir -p ~/stocks/dist
       - run:
           name: Copy files from docker image
-          command: docker run -it stocks tar -c -C /usr/share/nginx/html/ | tar x -C ~/stocks/dist
+          command: docker run stocks tar -c -C /usr/share/nginx/html/ . | tar -x -C ~/stocks/dist
       - run:
           name: Add aws cli dependencies
           command: |
