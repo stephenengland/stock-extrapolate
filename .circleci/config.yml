@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/stocks
+    docker:
+      - image: docker:17.06.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 17.06.0-ce
+      - run:
+          name: Docker Build
+          command: docker build -t="stocks" .
+      - run:
+          name: Make dist folder
+          command: mkdir -p ~/stocks/dist
+      - run:
+          name: Copy files from docker image
+          command: docker run -it stocks tar -c -C /usr/share/nginx/html/ | tar x -C ~/stocks/dist
+      - run:
+          name: Add aws cli dependencies
+          command: |
+            apk add --update python python-dev py-pip build-base libffi-dev openssl-dev
+      - run:
+          name: Add aws cli
+          command: |
+            pip install awscli
+      - deploy:
+          name: Push website to s3
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              aws s3 sync ~/stocks/dist/ s3://stocks.theahstudios.com/ --delete
+            fi

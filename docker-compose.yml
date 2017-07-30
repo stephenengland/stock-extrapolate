@@ -1,0 +1,6 @@
+version: '2.0'
+services:
+  stock-extrapolate:
+    build: .
+    ports:
+      - 3000:80
